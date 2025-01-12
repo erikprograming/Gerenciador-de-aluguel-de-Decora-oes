@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 
-relatorio = pandas.read_csv("Sara_planilia.csv")
+relatorio = pandas.read_csv("Seu_Arquivo.csv")
 
 def calculo():
     sele = listbox.curselection()
