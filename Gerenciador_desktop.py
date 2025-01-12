@@ -5,7 +5,7 @@ from tkinter import messagebox
 
 relatorio = pandas.read_csv("Seu_Arquivo.csv")
 
-def calculo():
+def calculo(): #funçao que calcula o canho total de um mês especifico
     sele = listbox.curselection()
     indice = 0
     valor = 0
@@ -25,7 +25,7 @@ def calculo():
         else:
             resultado.configure(text="Não existe valor \n"
                                      "neste mês")
-def carregar_decoraçoes():
+def carregar_decoraçoes(): #funçao que coloca os valores na tabela em visualizaçao
     global relatorio
     for item in tree.get_children():
         tree.delete(item)
@@ -37,7 +37,7 @@ def carregar_decoraçoes():
             ad.append(item)
         tree.insert("", "end", values=ad)
 
-def adicionar():
+def adicionar():# aiciona uma nova linha
     Data = entry_data.get()
     Cliente = entry_nome.get()
     Valor = entry_valor.get()
@@ -64,7 +64,7 @@ def adicionar():
     global relatorio
     relatorio = pandas.concat([relatorio, new_csv], ignore_index=True)
     carregar_decoraçoes()
-def apagar():
+def apagar(): #apaga um linha
     item_selecionado = tree.selection()[0]
     valores = tree.item(item_selecionado, "values")
     produto_id = valores[1]
@@ -72,11 +72,11 @@ def apagar():
     relatorio = relatorio[relatorio['Cliente'] != produto_id]
     relatorio = relatorio.reset_index(drop=True)
     carregar_decoraçoes()
-def salvar():
+def salvar(): #Salva a tabela
     global relatorio
     relatorio.to_csv("Sara_planilia.csv", index=0)
     messagebox.showinfo("concluido", "salvo com sucesso")
-def alterar():
+def alterar(): #altera uma linha da tabela
     Data = entry_data.get()
     Cliente = entry_nome.get()
     Valor = entry_valor.get()
